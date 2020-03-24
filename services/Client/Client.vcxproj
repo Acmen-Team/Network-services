@@ -123,7 +123,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="v_client_1\client_Tcp_cs_1.cpp" />
+    <ClCompile Include="v_client_1\client_Tcp_cs_1.0.cpp" />
+    <ClCompile Include="v_client_1\client_Tcp_cs_1.1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

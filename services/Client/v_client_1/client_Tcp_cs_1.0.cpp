@@ -14,7 +14,7 @@
 		4.关闭套接字 closesocket
 */
 
-int main(void)
+int main_block(void)
 {
 	//启动Windows socket 2.x环境
 	WORD ver = MAKEWORD(2, 2);

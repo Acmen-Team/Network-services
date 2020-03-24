@@ -17,7 +17,7 @@
 
 */
 
-int main(void)
+int main_block(void)
 {
 	//Æô¶¯Windows socket 2.x»·¾³
 	WORD ver = MAKEWORD(2, 2);
