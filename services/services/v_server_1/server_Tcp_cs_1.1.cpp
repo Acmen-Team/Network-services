@@ -9,7 +9,10 @@
 #pragma comment(lib, "ws2_32.lib")
 
 /*
-	
+	简易TCP服务端业务逻辑更新，处理持续性请求，详情见流程图
+	消息类型:纯字符串网络消息
+		优点：处理简单，方便快捷
+		缺点：传递大量数据时，字符串解析消耗大
 */
 
 int main(void)
@@ -35,7 +38,7 @@ int main(void)
 		WSACleanup();
 		return 0;
 	}
-
+	//绑定端口
 	struct sockaddr_in _ser;
 	_ser.sin_family = AF_INET;
 	_ser.sin_addr.S_un.S_addr = INADDR_ANY;
@@ -130,14 +133,11 @@ int main(void)
 				return 0;
 			}
 		}
-		
 	}
 
 	//6.关闭套接字 closesocket
 	closesocket(_serSock);
 	//清理网络库
 	WSACleanup();
-
-
 	return 0;
 }

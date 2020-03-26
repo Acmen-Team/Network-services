@@ -14,7 +14,7 @@
 		4.关闭套接字 closesocket
 */
 
-int main_block(void)
+int main_block(void)	//因各版本在同一vs项目下，故为了避免生成时main函数冲突加block
 {
 	//启动Windows socket 2.x环境
 	WORD ver = MAKEWORD(2, 2);
