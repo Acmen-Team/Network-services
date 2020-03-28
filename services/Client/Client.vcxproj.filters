@@ -18,7 +18,10 @@
     <ClCompile Include="v_client_1\client_Tcp_cs_1.0.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="v_client_1\client_Tcp_cs_1.1.cpp">
+    <ClCompile Include="v_client_1\client_Tcp_cs_2.0.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="v_client_1\client_Tcp_cs_2.1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

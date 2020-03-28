@@ -15,7 +15,7 @@
 		缺点：传递大量数据时，字符串解析消耗大
 */
 
-int main(void)
+int main_blocks(void)
 {
 	WORD ver = MAKEWORD(2, 2);
 	WSADATA data;
