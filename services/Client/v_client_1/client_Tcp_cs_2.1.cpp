@@ -5,6 +5,7 @@
 #include <WinSock2.h>
 #pragma comment(lib, "ws2_32.lib")
 
+//定义结构化数据
 struct  dataPackage
 {
 	int _mVer;
@@ -34,7 +35,7 @@ int main(void)
 		WSACleanup();
 		return 0;
 	}
-
+	//连接服务器
 	struct sockaddr_in _cli;
 	_cli.sin_family = AF_INET;
 	_cli.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
@@ -55,11 +56,16 @@ int main(void)
 	char buf_S[1024];
 	printf("------当前可用指令------\n");
 	printf("getServer  获取服务器信息\n");
+	printf("quit	   客户端退出\n");
 	while (true)
 	{
 		char buf_R[1024] = { 0 };
 		printf("调用请求:");
 		scanf("%s", buf_S);
+		if (strcmp(buf_S, "quit") == 0)
+		{
+			break;
+		}
 		if (SOCKET_ERROR == send(_cliSock, buf_S, strlen(buf_S), 0))
 		{
 			//获取错误码
@@ -90,9 +96,7 @@ int main(void)
 	closesocket(_cliSock);
 	//清理网络库
 	WSACleanup();
-	
-
-
+	system("pause");
 	return 0;
 }
 
