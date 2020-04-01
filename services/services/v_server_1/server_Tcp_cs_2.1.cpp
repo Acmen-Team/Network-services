@@ -22,7 +22,6 @@ struct dataPackage
 
 int main()
 {
-	//打开网络库
 	WORD ver = MAKEWORD(2, 2);
 	WSADATA datd;
 	if (0 != WSAStartup(ver, &datd))
@@ -32,7 +31,7 @@ int main()
 		WSACleanup();
 		return 0;
 	}
-	//创建SOCKET
+
 	SOCKET _serSock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (INVALID_SOCKET == _serSock)
 	{
@@ -41,7 +40,7 @@ int main()
 		WSACleanup();
 		return 0;
 	}
-	//绑定客户端
+
 	struct sockaddr_in _ser;
 	_ser.sin_family = AF_INET;
 	_ser.sin_addr.S_un.S_addr = INADDR_ANY;
@@ -54,7 +53,7 @@ int main()
 		WSACleanup();
 		return 0;
 	}
-	//监听端口
+	
 	if (SOCKET_ERROR == listen(_serSock, 5))
 	{
 		int eroCode = WSAGetLastError();
@@ -63,7 +62,7 @@ int main()
 		WSACleanup();
 		return 0;
 	}
-	//等待客户端连接
+
 	struct sockaddr_in _cli;
 	int _clisize = sizeof(_cli);
 	SOCKET _cliSock = accept(_serSock, (struct sockaddr*)&_cli, &_clisize);
@@ -82,7 +81,7 @@ int main()
 	{
 		printf("新客户端已连接！ IP = %s\n", inet_ntoa(_cli.sin_addr));
 	}
-	//请求处理
+
 	char buf_R[1024] = { 0 };
 	dataPackage dp = { 2, 1, "server_Tcp_cs", "Holy-YxY" };
 	while (true)
@@ -99,7 +98,7 @@ int main()
 		}
 		else if (bufLen <= 0)
 		{
-			printf("客户端以退出，任务结束！\n");
+			printf("客户端以退出，任务结束！");
 			//清除套接字
 			closesocket(_cliSock);
 			break;
@@ -127,6 +126,6 @@ int main()
 	closesocket(_serSock);
 	//清理网络库
 	WSACleanup();
-	system("pause");
+
 	return 0;
 }
