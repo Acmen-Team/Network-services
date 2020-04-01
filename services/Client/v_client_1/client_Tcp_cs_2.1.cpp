@@ -5,6 +5,7 @@
 #include <WinSock2.h>
 #pragma comment(lib, "ws2_32.lib")
 
+//定义结构化数据
 struct  dataPackage
 {
 	int _mVer;

@@ -11,6 +11,7 @@ using namespace std;
 	消息类型:结构化数据
 */
 
+//定义结构化数据
 struct dataPackage
 {
 	int _mVer;
@@ -18,7 +19,6 @@ struct dataPackage
 	char serName[20];
 	char serUser[20];
 };
-
 
 int main()
 {
