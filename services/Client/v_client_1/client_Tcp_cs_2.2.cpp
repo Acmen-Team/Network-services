@@ -6,39 +6,39 @@
 #pragma comment(lib, "ws2_32.lib")
 
 /*
-	¼òÒ×TCP·şÎñ¶Ë
-	ÍøÂçÄ£ĞÍ£ºC--S
-	ÏûÏ¢ÀàĞÍ£ºÊı¾İ°ü
+	ç®€æ˜“TCPå®¢æˆ·ç«¯
+	ç½‘ç»œæ¨¡å‹ï¼šC--S
+	æ¶ˆæ¯ç±»å‹ï¼šæ•°æ®åŒ…
 */
 
-//Í¨¹ıÃ¶¾Ù¶¨Òå¸÷Ö¸Áî
+//é€šè¿‡æšä¸¾å®šä¹‰å„æŒ‡ä»¤
 enum  ORDER
 {
-	ORDER_LOG_IN,	//µÇÈë
-	ORDER_LOG_OUT,	//µÇ³ö
-	ORDER_ERROR		//´íÎó
+	ORDER_LOG_IN,	//ç™»å…¥
+	ORDER_LOG_OUT,	//ç™»å‡º
+	ORDER_ERROR		//é”™è¯¯
 };
-//¶¨Òå°üÍ·½á¹¹
+//å®šä¹‰åŒ…å¤´ç»“æ„
 struct DataHeader
 {
-	int ORDER;			//Ö¸Áî
-	int DataLength;		//½«Òª·¢ËÍÊı¾İµÄ³¤¶È
+	int ORDER;			//æŒ‡ä»¤
+	int DataLength;		//å°†è¦å‘é€æ•°æ®çš„é•¿åº¦
 };
-//¶¨ÒåORDER_LOG_INÖ¸Áî½«Òª´¦ÀíµÄÊı¾İ°ü
+//å®šä¹‰ORDER_LOG_INæŒ‡ä»¤å°†è¦å¤„ç†çš„æ•°æ®åŒ…
 struct LogIn
 {
 	char UserName[32];
 	char PassWord[32];
 };
-//¶¨ÒåORDER_LOG_OUTÖ¸Áî½«Òª´¦ÀíµÄÊı¾İ°ü
+//å®šä¹‰ORDER_LOG_OUTæŒ‡ä»¤å°†è¦å¤„ç†çš„æ•°æ®åŒ…
 struct LogOut
 {
 	char UserName[32];
 };
-//¶¨Òå´¦ÀíÇëÇóºó½á¹ûµÄÊı¾İ°ü
+//å®šä¹‰å¤„ç†è¯·æ±‚åç»“æœçš„æ•°æ®åŒ…
 struct LogResult
 {
-	int result;		//log×´Ì¬
+	int result;		//logçŠ¶æ€
 };
 
 int main(void)
@@ -49,7 +49,7 @@ int main(void)
 	if (0 != WSAStartup(ver, &data))
 	{
 		int errCode = WSAGetLastError();
-		printf("ERROR(´íÎóÂë£º%d):ÍøÂç¿â´ò¿ªÊ§°Ü", errCode);
+		printf("ERROR(é”™è¯¯ç ï¼š%d):ç½‘ç»œåº“æ‰“å¼€å¤±è´¥", errCode);
 		return 0;
 	}
 
@@ -57,8 +57,8 @@ int main(void)
 	if (INVALID_SOCKET == _cliSock)
 	{
 		int errCode = WSAGetLastError();
-		printf("ERROR(´íÎóÂë£º%d):SOCKET´´½¨Ê§°Ü", errCode);
-		//ÇåÀíÍøÂç¿â
+		printf("ERROR(é”™è¯¯ç ï¼š%d):SOCKETåˆ›å»ºå¤±è´¥", errCode);
+		//æ¸…ç†ç½‘ç»œåº“
 		WSACleanup();
 		return 0;
 	}
@@ -69,49 +69,49 @@ int main(void)
 	_cli.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
 	if (SOCKET_ERROR == connect(_cliSock, (const struct sockaddr*)&_cli, sizeof(_cli)))
 	{
-		//»ñÈ¡´íÎóÂë
+		//è·å–é”™è¯¯ç 
 		int eroCode = WSAGetLastError();
-		printf("ERROR(´íÎóÂë: %d)£º·şÎñÆ÷Á¬½ÓÊ§°Ü£¡\n", eroCode);
-		//Çå³ıÌ×½Ó×Ö
+		printf("ERROR(é”™è¯¯ç : %d)ï¼šæœåŠ¡å™¨è¿æ¥å¤±è´¥ï¼\n", eroCode);
+		//æ¸…é™¤å¥—æ¥å­—
 		closesocket(_cliSock);
-		//ÇåÀíÍøÂç¿â
+		//æ¸…ç†ç½‘ç»œåº“
 		WSACleanup();
 		return 0;
 	}
 
-	//¶¨Òå½ÓÊÕ´æ´¢ÓÃ»§ÊäÈëµÄÄÚ´æ
+	//å®šä¹‰æ¥æ”¶å­˜å‚¨ç”¨æˆ·è¾“å…¥çš„å†…å­˜
 	char buf_S[32];
-	printf("------µ±Ç°¿ÉÓÃÖ¸Áî------\n");
-	printf("login	ÓÃ»§µÇÈë\n");
-	printf("logout	ÓÃ»§µÈ³ö\n");
-	printf("quit	¿Í»§¶ËÍË³ö\n");
-	//ÊÕ·¢»úÖÆ
+	printf("------å½“å‰å¯ç”¨æŒ‡ä»¤------\n");
+	printf("login	ç”¨æˆ·ç™»å…¥\n");
+	printf("logout	ç”¨æˆ·ç­‰å‡º\n");
+	printf("quit	å®¢æˆ·ç«¯é€€å‡º\n");
+	//æ”¶å‘æœºåˆ¶
 	while (true)
 	{
-		printf("µ÷ÓÃÇëÇó:");
+		printf("è°ƒç”¨è¯·æ±‚:");
 		scanf("%s", buf_S);
-		//½ÓÊÕÓÃ»§ÊäÈë
+		//æ¥æ”¶ç”¨æˆ·è¾“å…¥
 		if (strcmp(buf_S, "quit") == 0)
 		{
 			break;
 		}
 		else if (strcmp(buf_S, "login") == 0)
 		{
-			//¶¨Òå²¢³õÊ¼»¯½«Òª·¢ËÍµÄÊı¾İ°ü
+			//å®šä¹‰å¹¶åˆå§‹åŒ–å°†è¦å‘é€çš„æ•°æ®åŒ…
 			LogIn login = { "Holy-YxY", "YxY" };
-			//¶¨Òå²¢¸ù¾İÊı¾İ°ü¶Ô°üÍ·½øĞĞ¸´ÖÆ
+			//å®šä¹‰å¹¶æ ¹æ®æ•°æ®åŒ…å¯¹åŒ…å¤´è¿›è¡Œå¤åˆ¶
 			DataHeader header;
-			header.ORDER = ORDER_LOG_IN;	//ÇëÇó¶ÔÓ¦ÏàÓ¦Ö¸Áî
-			header.DataLength = sizeof(login);	//ÏàÓ¦Ö¸Áî½«Òª·¢ËÍµÄÊı¾İ°ü³¤¶È
-			//·¢ËÍ°üÍ·
+			header.ORDER = ORDER_LOG_IN;	//è¯·æ±‚å¯¹åº”ç›¸åº”æŒ‡ä»¤
+			header.DataLength = sizeof(login);	//ç›¸åº”æŒ‡ä»¤å°†è¦å‘é€çš„æ•°æ®åŒ…é•¿åº¦
+			//å‘é€åŒ…å¤´
 			send(_cliSock, (const char*)&header, sizeof(header), 0);
-			//·¢ËÍÊı¾İ°ü
+			//å‘é€æ•°æ®åŒ…
 			send(_cliSock, (const char*)&login, sizeof(login), 0);
-			//½ÓÊÕ°üÍ·
+			//æ¥æ”¶åŒ…å¤´
 			recv(_cliSock, (char*)&header, sizeof(DataHeader), 0);
-			//¶¨Òå½«Òª½ÓÊÜµÄÇëÇó½á¹û
+			//å®šä¹‰å°†è¦æ¥å—çš„è¯·æ±‚ç»“æœ
 			LogResult logR = {  };
-			//½ÓÊÕ½á¹û
+			//æ¥æ”¶ç»“æœ
 			recv(_cliSock, (char*)&logR, sizeof(LogResult), 0);
 			printf("LogResult = %d\n", logR.result);
 		}
@@ -128,15 +128,15 @@ int main(void)
 			recv(_cliSock, (char*)&logR, sizeof(LogResult), 0);
 			printf("LogResult = %d\n", logR.result);
 		}
-		//¶ÔÓÃ»§ÊäÈë½øĞĞ¿Í»§¶Ë²ãÃæĞ£Ñé£¬±ÜÃâÎŞĞ§ÇëÇó·¢Íù·şÎñÆ÷
+		//å¯¹ç”¨æˆ·è¾“å…¥è¿›è¡Œå®¢æˆ·ç«¯å±‚é¢æ ¡éªŒï¼Œé¿å…æ— æ•ˆè¯·æ±‚å‘å¾€æœåŠ¡å™¨
 		else
 		{
-			printf("ÇëÇóÎŞĞ§£¬ÇëÖØĞÂÊäÈë£¡\n");
+			printf("è¯·æ±‚æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
 		}
 	}
-	//Çå³ıÌ×½Ó×Ö
+	//æ¸…é™¤å¥—æ¥å­—
 	closesocket(_cliSock);
-	//ÇåÀíÍøÂç¿â
+	//æ¸…ç†ç½‘ç»œåº“
 	WSACleanup();
 	system("pause");
 	return 0;
