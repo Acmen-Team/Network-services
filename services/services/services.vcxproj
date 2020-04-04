@@ -127,6 +127,7 @@
     <ClCompile Include="v_server_1\server_Tcp_cs_1.0.cpp" />
     <ClCompile Include="v_server_1\server_Tcp_cs_2.0.cpp" />
     <ClCompile Include="v_server_1\server_Tcp_cs_2.1.cpp" />
+    <ClCompile Include="v_server_1\server_Tcp_cs_2.2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -63,7 +63,7 @@ int main_blocks(void)
 		{
 			//获取错误码
 			int eroCode = WSAGetLastError();
-			printf("ERROR(错误码: %d)：服务器连接失败！\n", eroCode);
+			printf("ERROR(错误码: %d)：数据发送失败！\n", eroCode);
 			//清除套接字
 			closesocket(_cliSock);
 			//清理网络库

@@ -1,0 +1,196 @@
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#include <WinSock2.h>
+#pragma comment(lib, "ws2_32.lib")
+
+/*
+	简易TCP服务端
+	网络模型：C--S
+	消息类型：数据报（ 包头 + 数据包 ）
+*/
+
+//通过枚举定义各指令
+enum  ORDER
+{
+	ORDER_LOG_IN,	//登入
+	ORDER_LOG_OUT,	//登出
+	ORDER_ERROR		//错误
+};
+//定义包头结构
+struct DataHeader
+{
+	int ORDER;			//指令
+	int DataLength;		//将要发送数据的长度
+};
+//定义ORDER_LOG_IN指令将要处理的数据包
+struct LogIn
+{
+	char UserName[32];
+	char PassWord[32];
+};
+//定义ORDER_LOG_OUT指令将要处理的数据包
+struct LogOut
+{
+	char UserName[32];
+};
+//定义处理请求后结果的数据包
+struct LogResult
+{
+	int result;		//log状态
+};
+
+int main(void)
+{
+	WORD ver = MAKEWORD(2, 2);
+	WSADATA data;
+	//打开网络库
+	if (0 != WSAStartup(ver, &data))
+	{
+		int eroCode = WSAGetLastError();
+		printf("ERROR(错误码: %d)：网络库打开失败！\n", eroCode);
+		WSACleanup();
+		return 0;
+	}
+	//创建SOCKET
+	SOCKET _serSock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if (INVALID_SOCKET == _serSock)
+	{
+		int eroCode = WSAGetLastError();
+		printf("ERROR(错误码: %d)：SOCKET创建失败！\n", eroCode);
+		WSACleanup();
+		return 0;
+	}
+	//绑定端口
+	struct sockaddr_in _ser;
+	_ser.sin_family = AF_INET;
+	_ser.sin_port = htons(32123);
+	_ser.sin_addr.S_un.S_addr = INADDR_ANY;
+	if (SOCKET_ERROR == bind(_serSock, (const struct sockaddr*)&_ser, sizeof(_ser)))
+	{
+		int eroCode = WSAGetLastError();
+		printf("ERROR(错误码: %d)：绑定失败！\n", eroCode);
+		closesocket(_serSock);
+		WSACleanup();
+		return 0;
+	}
+	//监听端口
+	if (SOCKET_ERROR == listen(_serSock, 5))
+	{
+		int eroCode = WSAGetLastError();
+		printf("ERROR(错误码: %d)：监听失败！\n", eroCode);
+		closesocket(_serSock);
+		WSACleanup();
+		return 0;
+	}
+	//等待客户端连接
+	sockaddr_in _cli;
+	int _cliSize = sizeof(_cli);
+	SOCKET _cliSock = accept(_serSock, (sockaddr*)&_cli, &_cliSize);
+	if (INVALID_SOCKET == _cliSock)
+	{
+		//获取错误码
+		int eroCode = WSAGetLastError();
+		printf("ERROR(错误码: %d)：客户端连接失败！\n", eroCode);
+		//清除套接字
+		closesocket(_serSock);
+		//清理网络库
+		WSACleanup();
+		return 0;
+	}
+	else
+	{
+		printf("新客户端已连接！SOCKET = %d, IP = %s\n", (int)_cliSock,inet_ntoa(_cli.sin_addr));
+	}
+	//收发处理逻辑
+	while (true)
+	{
+		//定义将要接收的包头
+		DataHeader header = {};
+		//接收包头长度的数据，并将接受的数据以包头结构存储
+		int rLen = recv(_cliSock, (char *)&header, sizeof(DataHeader), 0);
+		if (SOCKET_ERROR == rLen)
+		{
+			//获取错误码
+			int eroCode = WSAGetLastError();
+			printf("ERROR(错误码: %d)：数据接收失败！\n", eroCode);
+			//清除套接字
+			closesocket(_cliSock);
+			break;
+		}
+		else if (rLen <= 0)
+		{
+			printf("客户端以退出，任务结束！\n");
+			//清除套接字
+			closesocket(_cliSock);
+			break;
+		}
+		else
+		{
+			printf("收到请求: %d, 数据长度: %d \n", header.ORDER, header.DataLength);
+			//根据接收到的包头里的指令，来进行分支处理
+			switch (header.ORDER)
+			{
+			case ORDER_LOG_IN:
+			{
+				//定义将要接收的数据包
+				LogIn login = {};
+				//接收相应数据包长度的数据，并将接受的数据以相应数据包结构存储
+				recv(_cliSock, (char *)&login, sizeof(LogIn), 0);
+				/*
+					//可在此处扩展登陆业务逻辑
+				*/
+				printf("登入请求：UserName = '%s', PassWord = '%s' \n", login.UserName, login.PassWord);
+				//相应业务处理完成后，向对方发送包头
+				if (SOCKET_ERROR == send(_cliSock, (const char*)&header, sizeof(DataHeader), 0))
+				{
+					//获取错误码
+					int eroCode = WSAGetLastError();
+					printf("ERROR(错误码: %d)：数据发送失败！\n", eroCode);
+					//清除套接字
+					closesocket(_cliSock);
+					break;
+				}
+				//定义将要发送的log状态
+				LogResult logR = { 1 };		//1代表当前处于LOG_IN状态
+				send(_cliSock, (const char*)&logR, sizeof(LogResult), 0);
+				break;
+			}
+			case ORDER_LOG_OUT:
+			{
+				LogOut logout = {};
+				recv(_cliSock, (char *)&logout, sizeof(LogOut), 0);
+				/*
+					//可在此处扩展登陆业务逻辑
+				*/
+				printf("登出请求：UserName = '%s' \n", logout.UserName);
+				if (SOCKET_ERROR == send(_cliSock, (const char*)&header, sizeof(DataHeader), 0))
+				{
+					//获取错误码
+					int eroCode = WSAGetLastError();
+					printf("ERROR(错误码: %d)：数据发送失败！\n", eroCode);
+					//清除套接字
+					closesocket(_cliSock);
+					break;
+				}
+				LogResult logR = { 0 };		//0代表当前处于LOG_OUT状态
+				send(_cliSock, (const char*)&logR, sizeof(LogResult), 0);
+				break;
+			}
+			//接收到异常指令时
+			default:
+			{
+				header.ORDER = ORDER_ERROR;
+				header.DataLength = 0;
+				send(_cliSock, (const char*)&header, sizeof(DataHeader), 0);
+			}
+				break;
+			}
+		}
+	}
+	closesocket(_serSock);
+	WSACleanup();
+	system("pause");
+	return 0;
+}
