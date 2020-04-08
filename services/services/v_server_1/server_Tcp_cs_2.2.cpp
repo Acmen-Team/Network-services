@@ -1,10 +1,19 @@
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#define _CRT_SECURE_NO_WARNINGS
+#ifdef _WIN32
+	#define _WINSOCK_DEPRECATED_NO_WARNINGS
+	#define _CRT_SECURE_NO_WARNINGS
+
+	#include <WinSock2.h>
+	#pragma comment(lib, "ws2_32.lib")
+#else
+	#include <unistd.h>
+	#include <arpa/inet.h>
+	#include <string.h>
+	
+	#define SOCKET int
+	#define INVALID_SOCKET  (SOCKET)(~0)
+	#define SOCKET_ERROR            (-1)
+#endif
 #include <stdio.h>
-
-#include <WinSock2.h>
-#pragma comment(lib, "ws2_32.lib")
-
 /*
 	简易TCP服务端
 	网络模型：C--S
@@ -43,6 +52,7 @@ struct LogResult
 
 int main(void)
 {
+#ifdef _WIN32
 	WORD ver = MAKEWORD(2, 2);
 	WSADATA data;
 	//打开网络库
@@ -53,43 +63,65 @@ int main(void)
 		WSACleanup();
 		return 0;
 	}
+#endif
 	//创建SOCKET
 	SOCKET _serSock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (INVALID_SOCKET == _serSock)
 	{
+	#ifdef _WIN32
 		int eroCode = WSAGetLastError();
 		printf("ERROR(错误码: %d)：SOCKET创建失败！\n", eroCode);
 		WSACleanup();
+	#else
+		printf("ERROR(错误码: %d)：SOCKET创建失败！\n", -1);
+	#endif
 		return 0;
 	}
 	//绑定端口
 	struct sockaddr_in _ser;
 	_ser.sin_family = AF_INET;
-	_ser.sin_port = htons(32123);
+	_ser.sin_port = htons(8989);
+#ifdef _WIN32
 	_ser.sin_addr.S_un.S_addr = INADDR_ANY;
+#else
+	_ser.sin_addr.s_addr = INADDR_ANY;
+#endif
 	if (SOCKET_ERROR == bind(_serSock, (const struct sockaddr*)&_ser, sizeof(_ser)))
 	{
+	#ifdef _WIN32
 		int eroCode = WSAGetLastError();
 		printf("ERROR(错误码: %d)：绑定失败！\n", eroCode);
 		closesocket(_serSock);
 		WSACleanup();
+	#else
+		printf("ERROR(错误码: %d)：绑定失败！\n", -1);
+	#endif
 		return 0;
 	}
 	//监听端口
 	if (SOCKET_ERROR == listen(_serSock, 5))
 	{
+	#ifdef _WIN32
 		int eroCode = WSAGetLastError();
 		printf("ERROR(错误码: %d)：监听失败！\n", eroCode);
 		closesocket(_serSock);
 		WSACleanup();
+	#else
+		printf("ERROR(错误码: %d)：监听失败！\n", -1);
+	#endif
 		return 0;
 	}
 	//等待客户端连接
 	sockaddr_in _cli;
 	int _cliSize = sizeof(_cli);
+#ifdef _WIN32
 	SOCKET _cliSock = accept(_serSock, (sockaddr*)&_cli, &_cliSize);
+#else
+	SOCKET _cliSock = accept(_serSock, (sockaddr*)&_cli, (socklen_t*)&_cliSize);
+#endif
 	if (INVALID_SOCKET == _cliSock)
 	{
+	#ifdef _WIN32
 		//获取错误码
 		int eroCode = WSAGetLastError();
 		printf("ERROR(错误码: %d)：客户端连接失败！\n", eroCode);
@@ -97,6 +129,9 @@ int main(void)
 		closesocket(_serSock);
 		//清理网络库
 		WSACleanup();
+	#else
+		printf("ERROR(错误码: %d)：客户端连接失败！\n", -1);
+	#endif
 		return 0;
 	}
 	else
@@ -112,18 +147,20 @@ int main(void)
 		int rLen = recv(_cliSock, (char *)&header, sizeof(DataHeader), 0);
 		if (SOCKET_ERROR == rLen)
 		{
+		#ifdef _WIN32
 			//获取错误码
 			int eroCode = WSAGetLastError();
 			printf("ERROR(错误码: %d)：数据接收失败！\n", eroCode);
 			//清除套接字
 			closesocket(_cliSock);
+		#else
+			printf("ERROR(错误码: %d)：数据接收失败！\n", -1);
+		#endif
 			break;
 		}
 		else if (rLen <= 0)
 		{
 			printf("客户端以退出，任务结束！\n");
-			//清除套接字
-			closesocket(_cliSock);
 			break;
 		}
 		else
@@ -145,11 +182,15 @@ int main(void)
 				//相应业务处理完成后，向对方发送包头
 				if (SOCKET_ERROR == send(_cliSock, (const char*)&header, sizeof(DataHeader), 0))
 				{
+				#ifdef _WIN32
 					//获取错误码
 					int eroCode = WSAGetLastError();
 					printf("ERROR(错误码: %d)：数据发送失败！\n", eroCode);
 					//清除套接字
 					closesocket(_cliSock);
+				#else
+					printf("ERROR(错误码: %d)：数据发送失败！\n", -1);
+				#endif
 					break;
 				}
 				//定义将要发送的log状态
@@ -167,11 +208,15 @@ int main(void)
 				printf("登出请求：UserName = '%s' \n", logout.UserName);
 				if (SOCKET_ERROR == send(_cliSock, (const char*)&header, sizeof(DataHeader), 0))
 				{
+				#ifdef _WIN32
 					//获取错误码
 					int eroCode = WSAGetLastError();
 					printf("ERROR(错误码: %d)：数据发送失败！\n", eroCode);
 					//清除套接字
 					closesocket(_cliSock);
+				#else
+					printf("ERROR(错误码: %d)：数据发送失败！\n", -1);
+				#endif
 					break;
 				}
 				LogResult logR = { 0 };		//0代表当前处于LOG_OUT状态
@@ -189,8 +234,13 @@ int main(void)
 			}
 		}
 	}
+#ifdef _WIN32
 	closesocket(_serSock);
 	WSACleanup();
 	system("pause");
+#else
+	close(_cliSock);
+	close(_serSock);
+#endif
 	return 0;
 }
