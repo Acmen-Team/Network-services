@@ -1,19 +1,10 @@
-#ifdef _WIN32
-	#define _WINSOCK_DEPRECATED_NO_WARNINGS
-	#define _CRT_SECURE_NO_WARNINGS
-
-	#include <WinSock2.h>
-	#pragma comment(lib, "ws2_32.lib")
-#else
-	#include <unistd.h>
-	#include <arpa/inet.h>
-	#include <string.h>
-
-	#define SOCKET int
-	#define INVALID_SOCKET  (SOCKET)(~0)
-	#define SOCKET_ERROR            (-1)
-#endif
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+
+#include <WinSock2.h>
+#pragma comment(lib, "ws2_32.lib")
+
 /*
 	简易TCP客户端
 	网络模型：C--S
@@ -52,7 +43,7 @@ struct LogResult
 
 int main(void)
 {
-#ifdef _WIN32
+
 	WORD ver = MAKEWORD(2, 2);
 	WSADATA data;
 	if (0 != WSAStartup(ver, &data))
@@ -61,31 +52,23 @@ int main(void)
 		printf("ERROR(错误码：%d):网络库打开失败", errCode);
 		return 0;
 	}
-#endif
+
 	SOCKET _cliSock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (INVALID_SOCKET == _cliSock)
 	{
-	#ifdef _WIN32
-		int eroCode = WSAGetLastError();
-		printf("ERROR(错误码: %d)：SOCKET创建失败！\n", eroCode);
+		int errCode = WSAGetLastError();
+		printf("ERROR(错误码：%d):SOCKET创建失败", errCode);
+		//清理网络库
 		WSACleanup();
-	#else
-		printf("ERROR(错误码: %d)：SOCKET创建失败！\n", -1);
-	#endif
 		return 0;
 	}
 
 	struct sockaddr_in _cli;
 	_cli.sin_family = AF_INET;
-	_cli.sin_port = htons(8989);
-#ifdef _WIN32
+	_cli.sin_port = htons(32123);
 	_cli.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
-#else
-	_cli.sin_addr.s_addr = inet_addr("127.0.0.1");
-#endif
 	if (SOCKET_ERROR == connect(_cliSock, (const struct sockaddr*)&_cli, sizeof(_cli)))
 	{
-	#ifdef _WIN32
 		//获取错误码
 		int eroCode = WSAGetLastError();
 		printf("ERROR(错误码: %d)：服务器连接失败！\n", eroCode);
@@ -93,9 +76,6 @@ int main(void)
 		closesocket(_cliSock);
 		//清理网络库
 		WSACleanup();
-	#else
-		printf("ERROR(错误码: %d)：服务器连接失败！\n", -1);
-	#endif
 		return 0;
 	}
 
@@ -103,7 +83,7 @@ int main(void)
 	char buf_S[32];
 	printf("------当前可用指令------\n");
 	printf("login	用户登入\n");
-	printf("logout	用户登出\n");
+	printf("logout	用户等出\n");
 	printf("quit	客户端退出\n");
 	//收发机制
 	while (true)
@@ -154,14 +134,10 @@ int main(void)
 			printf("请求无效，请重新输入！\n");
 		}
 	}
-#ifdef _WIN32
 	//清除套接字
 	closesocket(_cliSock);
 	//清理网络库
 	WSACleanup();
 	system("pause");
-#else
-	close(_cliSock);
-#endif
 	return 0;
 }
