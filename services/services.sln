@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "services\services
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcxproj", "{5E1DBC18-05CF-455F-8625-AF4A7DFCFE28}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UMD", "UMD\UMD.vcxproj", "{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "流程图", "流程图", "{B19367C2-5303-4983-8157-460C52E0AE73}"
 	ProjectSection(SolutionItems) = preProject
 		并发网络通信v1_1.0.png = 并发网络通信v1_1.0.png
@@ -40,14 +38,6 @@ Global
 		{5E1DBC18-05CF-455F-8625-AF4A7DFCFE28}.Release|x64.Build.0 = Release|x64
 		{5E1DBC18-05CF-455F-8625-AF4A7DFCFE28}.Release|x86.ActiveCfg = Release|Win32
 		{5E1DBC18-05CF-455F-8625-AF4A7DFCFE28}.Release|x86.Build.0 = Release|Win32
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Debug|x64.ActiveCfg = Debug|x64
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Debug|x64.Build.0 = Debug|x64
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Debug|x86.ActiveCfg = Debug|Win32
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Debug|x86.Build.0 = Debug|Win32
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Release|x64.ActiveCfg = Release|x64
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Release|x64.Build.0 = Release|x64
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Release|x86.ActiveCfg = Release|Win32
-		{549DBF1B-4C7C-4D94-8891-DDE8A8E5C55F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

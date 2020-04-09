@@ -12,7 +12,7 @@
 	#define SOCKET int
 	#define INVALID_SOCKET  (SOCKET)(~0)
 	#define SOCKET_ERROR            (-1)
-#endif
+	#endif
 #include <stdio.h>
 /*
 	简易TCP客户端
@@ -50,7 +50,7 @@ struct LogResult
 	int result;		//log状态
 };
 
-int main(void)
+int main_bloacks2(void)
 {
 #ifdef _WIN32
 	WORD ver = MAKEWORD(2, 2);
