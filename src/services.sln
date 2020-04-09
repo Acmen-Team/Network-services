@@ -9,7 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "流程图", "流程图", "{B19367C2-5303-4983-8157-460C52E0AE73}"
 	ProjectSection(SolutionItems) = preProject
-		并发网络通信v1_1.0.png = 并发网络通信v1_1.0.png
 		并发网络通信v1_2.0.png = 并发网络通信v1_2.0.png
 		流程图链接.txt = 流程图链接.txt
 	EndProjectSection
