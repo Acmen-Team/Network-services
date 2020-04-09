@@ -97,7 +97,7 @@ int main(void)
 	_cli.sin_family = AF_INET;
 	_cli.sin_port = htons(8989);
 	#ifdef _WIN32
-	_cli.sin_addr.S_un.S_addr = inet_addr("192.144.158.86");
+	_cli.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
 	#else
 	_cli.sin_addr.s_addr = inet_addr("127.0.0.1");
 	#endif
