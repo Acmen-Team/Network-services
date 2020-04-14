@@ -1,12 +1,12 @@
 
-$project
+#Network-services
 ========
 
  English | [简体中文](./README_CN.md)
 
  [![License](https://img.shields.io/github/license/Acmen-Team/Network-services)](LICENSE)
-[![Version](https://img.shields.io/badge/Sever-V1.2.3-blue)](src\services\v_server_1\server_Tcp_cs_2.2.cpp)
-[![Version](https://img.shields.io/badge/Sever-V1.2.3-blue)](src\Client\v_client_1\client_Tcp_cs_2.2.cpp)
+[![Version](https://img.shields.io/badge/Sever-V1.2.2-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/services/v_server_1/server_Tcp_cs_2.2.cpp)
+[![Version](https://img.shields.io/badge/Client-V1.2.2-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/Client/v_client_1/client_Tcp_cs_2.2.cpp)
 [![platform](https://img.shields.io/badge/platform-Windows----Linux-lightgrey)]()
 
 
@@ -42,9 +42,9 @@ Support
 -------
  
 If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
+We have a mailing list located at: project@****.com
  
 License
 -------
  
-The project is licensed under the BSD license.
+The project is licensed under the GPL-3.0 license.
