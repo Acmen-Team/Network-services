@@ -8,6 +8,7 @@
 	#include <unistd.h>
 	#include <arpa/inet.h>
 	#include <string.h>
+	#include <vector>
 
 	#define SOCKET int
 	#define INVALID_SOCKET  (SOCKET)(~0)
@@ -19,6 +20,11 @@
 //发送消息线程函数
 void _message(SOCKET);
 bool block = true;
+
+/*
+	select模型
+	实现多人群聊功能
+*/
 
 int main(void)
 {
@@ -52,7 +58,11 @@ int main(void)
 	//连接服务器
 	struct sockaddr_in _cli;
 	_cli.sin_family = AF_INET;
-	_cli.sin_addr.S_un.S_addr = inet_addr("196.168.1.1");
+#ifdef _WIN32
+	_ser.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+#else
+	_cli.sin_addr.s_addr = inet_addr("127.0.0.1");
+#endif
 	_cli.sin_port = htons(8989);
 	if (SOCKET_ERROR == connect(_cliSock, (const sockaddr*)&_cli, sizeof(_cli)))
 	{
@@ -119,7 +129,7 @@ void _message(SOCKET sock)
 		if (strcmp(buf_S, "exit") == 0)
 		{
 			printf("客户端已关闭，任务结束!\n");
-			block =  false;
+			block = false;
 			break;
 		}
 		else
