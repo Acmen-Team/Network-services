@@ -3,9 +3,15 @@
 
  English | [简体中文](./README_CN.md)
 
+<<<<<<< HEAD
 [![License](https://img.shields.io/github/license/Acmen-Team/Network-services)](LICENSE)
 [![Version](https://img.shields.io/badge/Sever-V1.2.3-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/services/v_server_1/server_Tcp_cs_2.2.cpp)
 [![Version](https://img.shields.io/badge/Client-V1.2.3-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/Client/v_client_1/client_Tcp_cs_2.2.cpp)
+=======
+ [![License](https://img.shields.io/github/license/Acmen-Team/Network-services)](LICENSE)
+[![Version](https://img.shields.io/badge/Server-V1.2.2-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/services/v_server_1/server_Tcp_cs_2.2.cpp)
+[![Version](https://img.shields.io/badge/Client-V1.2.2-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/Client/v_client_1/client_Tcp_cs_2.2.cpp)
+>>>>>>> cb5343a7b50d2431e9b369ed5047ba35a09150fc
 [![platform](https://img.shields.io/badge/platform-Windows----Linux-lightgrey)]()
 
 
