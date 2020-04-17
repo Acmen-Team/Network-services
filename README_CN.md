@@ -1,8 +1,8 @@
 # Network-services
 高并发网络服务(Network services)  
-c/s模型 一对一  
+c/s模型
 &nbsp;&nbsp;&nbsp;&nbsp;
-	端口:8989 IP:127.0.0.1   
+	端口:8989 测试IP:127.0.0.1   
     
 ## 文档目录解析  
 dist  编译出来的发布版

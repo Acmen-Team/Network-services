@@ -30,7 +30,7 @@ Installation
 Install Server/Client by running:
  + [Windos_x86](https://github.com/Acmen-Team/Network-services/blob/master/dist/Windows_x86)
  + [Windos_x64](https://github.com/Acmen-Team/Network-services/blob/master/dist/Windows_x64)
- + [Linux](https://github.com/Acmen-Team/Network-services/blob/master/dist/Windows_x86)
+ + [Linux](https://github.com/Acmen-Team/Network-services/blob/master/dist/Linux)
     
     
  
