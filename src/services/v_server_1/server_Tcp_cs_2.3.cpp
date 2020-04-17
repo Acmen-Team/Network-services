@@ -69,7 +69,7 @@ struct LogResult :public DataHeader
 	int result;
 };
 
-int main(void)
+int main_block(void)
 {
 	#ifdef _WIN32
 	WORD ver = MAKEWORD(2, 2);
