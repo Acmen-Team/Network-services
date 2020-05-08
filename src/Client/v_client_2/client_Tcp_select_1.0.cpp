@@ -59,7 +59,7 @@ int main(void)
 	struct sockaddr_in _cli;
 	_cli.sin_family = AF_INET;
 #ifdef _WIN32
-	_ser.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+	_cli.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
 #else
 	_cli.sin_addr.s_addr = inet_addr("127.0.0.1");
 #endif
@@ -105,7 +105,7 @@ int main(void)
 				printf("ERROR：数据接收失败，请重新登陆。\n");
 				break;
 			}
-			printf("%s\n", buf_R);
+			printf("\t\t\t%s\n", buf_R);
 		}
 	}
 	send_M.join();
