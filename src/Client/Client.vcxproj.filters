@@ -21,5 +21,8 @@
     <ClCompile Include="v_client_2\client_Tcp_select_1.0.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="v_client_2\client_Tcp_select_1.1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

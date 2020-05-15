@@ -30,7 +30,7 @@ std::vector<SOCKET> clientSocks;
 	实现多人群聊功能
 */
 
-int main(void)
+int main_blocks(void)
 {
 	#ifdef _WIN32
 	WORD ver = MAKEWORD(2, 2);

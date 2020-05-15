@@ -14,7 +14,6 @@
 #define INVALID_SOCKET  (SOCKET)(~0)
 #define SOCKET_ERROR            (-1)
 #endif // _WIN32
-
 #include <stdio.h>
 #include <thread>
 //发送消息线程函数
@@ -26,7 +25,7 @@ bool block = true;
 	实现多人群聊功能
 */
 
-int main(void)
+int main_blocks(void)
 {
 	printf("输入'exit'退出程序。\n");
 	#ifdef _WIN32
