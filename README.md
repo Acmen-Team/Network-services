@@ -8,7 +8,7 @@
     - Code
       * [server_Tcp_cs_2.3](https://github.com/Acmen-Team/Network-services/blob/dev/src/services/v_server_1/server_Tcp_cs_2.3.cpp)
       + [client_Tcp_cs_2.3](https://github.com/Acmen-Team/Network-services/blob/dev/src/Client/v_client_1/client_Tcp_cs_2.3.cpp)
-## Version:select(v2.1.0_Beat)
+## Version:select(v2.1.0_Beta)
  + select模型  
  + 实现多人群聊功能
     - Code
