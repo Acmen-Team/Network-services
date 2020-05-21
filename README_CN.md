@@ -7,17 +7,17 @@
 ## src 源码
 + V1.x.x c-s模型 跨平台
   - 一对一数据包通信(v1.2.3)
-    * [Server](src\services\v_server_1\server_Tcp_cs_2.3.cpp)
-    + [Client](src\Client\v_client_1\client_Tcp_cs_2.3.cpp)
+    * [Server](src\Server\server_Tcp_cs_2.3.cpp)
+    + [Client](src\Client\client_Tcp_cs_2.3.cpp)
 + V2.x.x select模型 跨平台
   - 多人群聊通信(v2.1.0)
-    * [Server](src\services\v_server_1\server_Tcp_select_1.0.cpp)
-    + [Client](src\Client\v_client_1\client_Tcp_select_1.0.cpp)
+    * [Server](src\Server\server_Tcp_select_1.0.cpp)
+    + [Client](src\Client\client_Tcp_select_1.0.cpp)
 
 ## 文档目录  
 dist  编译出来的发布版(V1.2.3)
-  - [windows](https://github.com/Acmen-Team/Network-services/blob/master/dist/)
-  - [linux](https://github.com/Acmen-Team/Network-services/blob/master/dist/Linux)
+  - [windows](https://github.com/Holy-YxY/Network-services/tree/master/dist/)
+  - [linux](https://github.com/Holy-YxY/Network-services/tree/master/dist/Linux)
 docs 文档 
 README.md   项目描述文档
 LICENSE     开源协议(GPL-3.0)

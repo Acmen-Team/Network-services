@@ -4,8 +4,8 @@
  English | [简体中文](./README_CN.md)
 
 [![License](https://img.shields.io/github/license/Acmen-Team/Network-services)](LICENSE)
-[![Version](https://img.shields.io/badge/Sever-V1.2.3-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/Server/server_Tcp_cs_2.3.cpp)
-[![Version](https://img.shields.io/badge/Client-V1.2.3-blue)](https://github.com/Acmen-Team/Network-services/blob/master/src/Client/client_Tcp_cs_2.3.cpp)
+[![Version](https://img.shields.io/badge/Sever-V1.2.3-blue)](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_cs_2.3.cpp)
+[![Version](https://img.shields.io/badge/Client-V1.2.3-blue)](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_cs_2.3.cpp)
 [![platform](https://img.shields.io/badge/platform-Windows----Linux-lightgrey)]()
 
 
@@ -28,17 +28,17 @@ Installation
 ------------
  
 Install Server/Client by running:
- + [Windos_x86](https://github.com/Acmen-Team/Network-services/blob/master/dist/Windows_x86)
- + [Windos_x64](https://github.com/Acmen-Team/Network-services/blob/master/dist/Windows_x64)
- + [Linux](https://github.com/Acmen-Team/Network-services/blob/master/dist/Linux)
+ + [Windos_x86](https://github.com/Holy-YxY/Network-services/tree/master/dist/Windows_x86)
+ + [Windos_x64](https://github.com/Holy-YxY/Network-services/tree/master/dist/Windows_x64)
+ + [Linux](https://github.com/Holy-YxY/Network-services/tree/master/dist/Linux)
     
     
  
 Contribute
 ----------
  
-- Issue Tracker: https://github.com/Acmen-Team/Network-services/issues
-- Source Code: https://github.com/Acmen-Team/Network-services/tree/master/src
+- Issue Tracker: https://github.com/Holy-YxY/Network-services/issues
+- Source Code: https://github.com/Holy-YxY/Network-services/tree/master/src
  
 Support
 -------
