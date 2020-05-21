@@ -7,12 +7,12 @@
 ## src 源码
 + V1.x.x c-s模型 跨平台
   - 一对一数据包通信(v1.2.3)
-    * [Server](src\Server\server_Tcp_cs_2.3.cpp)
-    + [Client](src\Client\client_Tcp_cs_2.3.cpp)
+    * [Server](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_cs_2.3.cpp)
+    + [Client](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_cs_2.3.cpp)
 + V2.x.x select模型 跨平台
   - 多人群聊通信(v2.1.0)
-    * [Server](src\Server\server_Tcp_select_1.0.cpp)
-    + [Client](src\Client\client_Tcp_select_1.0.cpp)
+    * [Server](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_select_1.0.cpp)
+    + [Client](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_select_1.0.cpp)
 
 ## 文档目录  
 dist  编译出来的发布版(V1.2.3)
