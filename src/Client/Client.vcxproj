@@ -123,7 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="v_client_1\client_Tcp_cs_2.3.cpp" />
     <ClCompile Include="v_client_2\client_Tcp_select_1.0.cpp" />
     <ClCompile Include="v_client_2\client_Tcp_select_1.1.cpp" />
   </ItemGroup>
