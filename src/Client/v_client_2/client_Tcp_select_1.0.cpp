@@ -26,7 +26,7 @@ bool block = true;
 	实现多人群聊功能
 */
 
-int main(void)
+int main_blocks_2_0(void)
 {
 #ifdef _WIN32
 	WORD ver = MAKEWORD(2, 2);
