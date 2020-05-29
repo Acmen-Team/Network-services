@@ -4,8 +4,11 @@
  English | [简体中文](./README_CN.md)
 
 [![License](https://img.shields.io/github/license/Acmen-Team/Network-services)](LICENSE)
-[![Version](https://img.shields.io/badge/Sever-V1.2.3-blue)](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_cs_2.3.cpp)
-[![Version](https://img.shields.io/badge/Client-V1.2.3-blue)](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_cs_2.3.cpp)
+[![Version](https://img.shields.io/badge/Server--News-V1.2.3-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_cs_2.3.cpp)
+[![Version](https://img.shields.io/badge/Client--News-V1.2.3-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_cs_2.3.cpp)
+[![Version](https://img.shields.io/badge/Server--News-V2.1.0-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_select_1.0.cpp)
+[![Version](https://img.shields.io/badge/Client--News-V2.1.0-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_select_1.0.cpp)
+
 [![platform](https://img.shields.io/badge/platform-Windows----Linux-lightgrey)]()
 
 
@@ -28,11 +31,20 @@ Installation
 ------------
  
 Install Server/Client by running:
- + [Windos_x86](https://github.com/Holy-YxY/Network-services/tree/master/dist/Windows_x86)
- + [Windos_x64](https://github.com/Holy-YxY/Network-services/tree/master/dist/Windows_x64)
- + [Linux](https://github.com/Holy-YxY/Network-services/tree/master/dist/Linux)
-    
-    
+
+ | Version | Type | Stage | Source |
+ | :----:| :----: | :----: | :----:|
+ | v1.2.3 | News | [RC](https://github.com/Holy-YxY/Network-services/tree/master/dist) | [Code](https://github.com/Holy-YxY/Network-services/tree/master/src) |
+ | v2.1.0 | News | [Beta]() | [Code](https://github.com/Holy-YxY/Network-services/tree/master/src) |
+
+Attention
+------------
+
+VS:Please Add Code
+ ```C++
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+```
  
 Contribute
 ----------
