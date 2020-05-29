@@ -15,11 +15,11 @@
     + [Client](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_select_1.0.cpp)
 
 ## 文档目录  
-dist  编译出来的发布版(V1.2.3)
++ dist  编译出来的发布版(V1.2.3)
   - [windows](https://github.com/Holy-YxY/Network-services/tree/master/dist/)
   - [linux](https://github.com/Holy-YxY/Network-services/tree/master/dist/Linux)
-docs 文档 
-README.md   项目描述文档
-LICENSE     开源协议(GPL-3.0)
++ docs 文档 
++ README.md   项目描述文档
++ LICENSE     开源协议(GPL-3.0)
 ## 其他
   - _Email：876285983@qq.com_
