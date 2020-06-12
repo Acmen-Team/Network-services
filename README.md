@@ -4,10 +4,6 @@
  English | [简体中文](./README_CN.md)
 
 [![License](https://img.shields.io/github/license/Acmen-Team/Network-services)](LICENSE)
-[![Version](https://img.shields.io/badge/Server--News-V1.2.3-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_cs_2.3.cpp)
-[![Version](https://img.shields.io/badge/Client--News-V1.2.3-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_cs_2.3.cpp)
-[![Version](https://img.shields.io/badge/Server--News-V2.1.0-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Server/server_Tcp_select_1.0.cpp)
-[![Version](https://img.shields.io/badge/Client--News-V2.1.0-yellowgreen)](https://github.com/Holy-YxY/Network-services/tree/master/src/Client/client_Tcp_select_1.0.cpp)
 [![platform](https://img.shields.io/badge/platform-Windows----Linux-lightgrey)]()
 
 
@@ -49,7 +45,6 @@ Contribute
 ----------
  
 - Issue Tracker: https://github.com/Holy-YxY/Network-services/issues
-- Source Code: https://github.com/Holy-YxY/Network-services/tree/master/src
  
 Support
 -------
