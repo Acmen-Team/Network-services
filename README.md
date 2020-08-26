@@ -7,20 +7,32 @@
 [![platform](https://img.shields.io/badge/platform-Windows----Linux-lightgrey)]()
 
 
-Network service is a high concurrency communication framework about network communication, 
+**Network service** is a high concurrency communication framework about network communication, 
 it can let you know about the knowledge of the computer network, at the same time, 
 it can also help you solve some problems more easily and quickly to some extent.
- 
-Look how easy it is to use:
- 
-    This is being documented, stay tuned...
  
 Features
 --------
  
-- High concurrency
-- Make things faster
-- Easy to use
+- **High concurrency**
+- **Make things faster**
+- **Easy to use**
+- **High performance**
+- **High availability are assured**
+
+Quick Start
+-----------
+
+* Read the [Getting started](http://120.53.9.143:9898/) guide to quickly get going with **Network serveice**.
+
+* Please note that you must install **Network serveice** by [installing source code](), [rpm/deb packages]() or [docker compose](), before you can actually start using it.
+
+* In case you encounter any problem, be sure to ask us on our [official forum]().
+
+Documentation
+-------------
+ 
+    This is being documented, stay tuned...
 
 Installation
 ------------
@@ -44,14 +56,19 @@ VS:Please Add Code
 Contribute
 ----------
  
-- Issue Tracker: https://github.com/Holy-YxY/Network-services/issues
- 
-Support
+- Issue Tracker:[Some good first issues](https://github.com/Holy-YxY/Network-services/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- Submit Pull Requests to us. See [how to contribute](http://120.53.9.143:9898/)
+
+Getting help & Contact
 -------
  
 If you are having issues, please let us know.
 We have a mailing list located at: 876285983@qq.com
+
+In case you encounter any problems playing around **Network serveice**, please reach out for help:
  
+ - [official forum](http://120.53.9.143:9898/)
+
 License
 -------
  
