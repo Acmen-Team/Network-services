@@ -23,11 +23,11 @@ Features
 Quick Start
 -----------
 
-* Read the [Getting started](http://120.53.9.143:9898/) guide to quickly get going with **Network serveice**.
+* Read the [Getting started](https://network-service.github.io/) guide to quickly get going with **Network serveice**.
 
 * Please note that you must install **Network serveice** by [installing source code](), [rpm/deb packages]() or [docker compose](), before you can actually start using it.
 
-* In case you encounter any problem, be sure to ask us on our [official forum]().
+* In case you encounter any problem, be sure to ask us on our [official forum](http://120.53.9.143:9898/).
 
 Documentation
 -------------
@@ -57,7 +57,7 @@ Contribute
 ----------
  
 - Issue Tracker:[Some good first issues](https://github.com/Holy-YxY/Network-services/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- Submit Pull Requests to us. See [how to contribute](http://120.53.9.143:9898/)
+- Submit Pull Requests to us. See [how to contribute](https://network-service.github.io/)
 
 Getting help & Contact
 -------
